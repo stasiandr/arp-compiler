@@ -1,0 +1,5 @@
+from extern System.Console.dll import System.Console
+
+fn main() {
+    Console.WriteLine("Hello, world!");
+} 

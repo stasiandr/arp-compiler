@@ -1,0 +1,13 @@
+[package]
+name = "arp_il_emitter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1.0.63"
+ariadne = "0.4.1"
+
+arp_types = { path = "../arp_types"}
+arp_ast_processor = { path = "../arp_ast_processor" }
+bitflags = "2.6.0"
+tempfile = "3.12.0"

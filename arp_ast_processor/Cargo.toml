@@ -1,0 +1,16 @@
+[package]
+name = "arp_ast_processor"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+
+thiserror = "1.0.63"
+ariadne = "0.4.1"
+
+arp_types = { path = "../arp_types"}
+arp_parser = { path = "../arp_parser" }
+arp_lexer = { path = "../arp_lexer" }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

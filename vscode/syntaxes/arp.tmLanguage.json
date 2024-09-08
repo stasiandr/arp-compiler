@@ -1,0 +1,280 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Arp",
+    "patterns": [
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#block-comments"
+        },
+        {
+            "include": "#comments"
+        },
+		{
+			"include": "#variables"
+		}
+    ],
+    "repository": {
+		"variables": {
+			"patterns": [
+				{
+				"comment": "variables",
+				"match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(crate|[Ss]elf|super)))?[a-z0-9_]+\\b",
+				"name": "variable.other.arp"
+				}
+			]
+		},
+        "types": {
+            "patterns": [
+				{
+					"captures": {
+					  "1": {
+						"name": "entity.name.type.numeric.arp"
+					  }
+					},
+					"comment": "numeric types",
+					"match": "(?<![A-Za-z])(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b"
+				},
+				{
+					"comment": "primitive types",
+					"match": "\\b(bool|char|str)\\b",
+					"name": "entity.name.type.primitive.arp"
+				},
+                {
+                    "match": "\\b:\\s*([A-Za-z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b->\\s*([A-Za-z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+				{
+					"captures": {
+					  "1": {
+						"name": "keyword.declaration.struct.arp storage.type.arp"
+					  },
+					  "2": {
+						"name": "entity.name.type.struct.arp"
+					  }
+					},
+					"comment": "struct declarations",
+					"match": "\\b(struct)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b"
+				},
+				{
+					"captures": {
+					  "1": {
+						"name": "keyword.declaration.class.arp storage.type.arp"
+					  },
+					  "2": {
+						"name": "entity.name.type.class.arp"
+					  }
+					},
+					"comment": "class declarations",
+					"match": "\\b(class)\\s+(_?[A-Z][A-Za-z0-9_]*)\\b"
+				}
+            ]
+        },
+        "functions": {
+            "patterns": [
+				{
+					"captures": {
+					  "1": {
+						"name": "keyword.other.rust"
+					  },
+					  "2": {
+						"name": "punctuation.brackets.round.rust"
+					  }
+					},
+					"comment": "pub as a function",
+					"match": "\\b(pub)(\\()"
+				},
+                {
+                    "name": "entity.name.function",
+                    "match": "\\b\\.[A-Za-z][A-Za-z0-9_]*\\b"
+                },
+                {
+					"begin": "\\b(fn)\\s+((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)((\\()|(<))",
+					"beginCaptures": {
+					  "1": {
+						"name": "keyword.other.fn.rust"
+					  },
+					  "2": {
+						"name": "entity.name.function.rust"
+					  },
+					  "4": {
+						"name": "punctuation.brackets.round.rust"
+					  },
+					  "5": {
+						"name": "punctuation.brackets.angle.rust"
+					  }
+					},
+					"comment": "function definition",
+					"end": "\\{|;",
+					"endCaptures": {
+					  "0": {
+						"name": "punctuation.brackets.curly.rust"
+					  }
+					},
+					"name": "meta.function.definition.rust",
+					"patterns": [
+					  {
+						"include": "#block-comments"
+					  },
+					  {
+						"include": "#comments"
+					  },
+					  {
+						"include": "#keywords"
+					  },
+					  {
+						"include": "#functions"
+					  },
+					  {
+						"include": "#strings"
+					  },
+					  {
+						"include": "#types"
+					  },
+					  {
+						"include": "#variables"
+					  }
+					]
+				  }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+					"comment": "control flow keywords",
+					"match": "\\b(break|continue|else|for|if|return|while)\\b",
+					"name": "keyword.control.arp"
+				},
+				{
+					"comment": "storage keywords",
+					"match": "\\b(let)\\b",
+					"name": "keyword.other.arp storage.type.arp"
+				},
+				{
+					"comment": "fn",
+					"match": "\\bfn\\b",
+					"name": "keyword.other.fn.arp"
+				},
+				{
+					"comment": "assignment operators",
+					"match": "(=)",
+					"name": "keyword.operator.assignment.arp"
+				},
+				{
+					"comment": "logical operators",
+					"match": "(and|or)",
+					"name": "keyword.operator.logical.arp"
+				},
+				{
+					"comment": "skinny arrow",
+					"match": "->",
+					"name": "keyword.operator.arrow.skinny.arp"
+				},
+				{
+				  "comment": "question mark operator",
+				  "match": "\\?",
+				  "name": "keyword.operator.question.arp"
+				},
+				{
+					"comment": "single equal",
+					"match": "(?<![<>])=(?!=|>)",
+					"name": "keyword.operator.assignment.equal.arp"
+				},
+				{
+					"comment": "comparison operators",
+					"match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)",
+					"name": "keyword.operator.comparison.arp"
+				}
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.arp",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.arp",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "block-comments": {
+            "patterns": [
+                {
+                    "comment": "empty block comments",
+                    "match": "/\\*\\*/",
+                    "name": "comment.block.arp"
+                },
+                {
+                    "begin": "/\\*\\*",
+                    "comment": "block documentation comments",
+                    "end": "\\*/",
+                    "name": "comment.block.documentation.arp",
+                    "patterns": [
+                        {
+                            "include": "#block-comments"
+                        }
+                    ]
+                },
+                {
+                    "begin": "/\\*(?!\\*)",
+                    "comment": "block comments",
+                    "end": "\\*/",
+                    "name": "comment.block.arp",
+                    "patterns": [
+                        {
+                            "include": "#block-comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.arp"
+                        }
+                    },
+                    "comment": "documentation comments",
+                    "match": "(///).*$",
+                    "name": "comment.line.documentation.arp"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.arp"
+                        }
+                    },
+                    "comment": "line comments",
+                    "match": "(//).*$",
+                    "name": "comment.line.double-slash.arp"
+                }
+            ]
+        }
+    },
+    "scopeName": "main.arp"
+}

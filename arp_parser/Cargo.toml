@@ -1,0 +1,11 @@
+[package]
+name = "arp_parser"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1.0.63"
+ariadne = "0.4.1"
+arp_types = { path = "../arp_types"}
+arp_lexer = { path = "../arp_lexer"}
+chumsky = "0.9"

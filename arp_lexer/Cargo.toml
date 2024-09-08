@@ -1,0 +1,16 @@
+[package]
+name = "arp_lexer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ariadne = "0.4.1"
+arp_types = { path = "../arp_types"}
+logos = "0.14.1"
+thiserror = "1.0.63"
+
+
+[lints.clippy]
+pedantic = "warn"
+missing_errors_doc = "allow"
+# restriction = "warn"

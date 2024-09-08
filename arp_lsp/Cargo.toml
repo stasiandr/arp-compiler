@@ -1,0 +1,16 @@
+[package]
+name = "arp_lsp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+thiserror = "1.0.63"
+ariadne = "0.4.1"
+
+arp_types = { path = "../arp_types"}
+arp_lexer = { path = "../arp_lexer"}
+arp_parser = { path = "../arp_parser" }
+
+tokio = { version = "1.39.3", features = ["full"] }
+tower-lsp = "0.20.0"

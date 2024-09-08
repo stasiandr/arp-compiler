@@ -1,0 +1,10 @@
+[dotnet]
+sdk = "Microsoft.Net.Sdk.il/8.0.0"
+target = "net8.0"
+
+
+[package]
+name = "arpm"
+
+[dev]
+clean_build = false

@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = [
+    "arp_compiler", 
+    "arp_lexer", 
+    "arp_lsp", 
+    "arp_parser", 
+    "arp_types", 
+    "arp_ast_processor"
+, "arp_il_emitter"]
